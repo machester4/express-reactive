@@ -1,0 +1,21 @@
+{
+  "name": "express-request-subscriber",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Michael Pintos",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "md5": "^2.2.1",
+    "socket.io": "^2.3.0"
+  }
+}
