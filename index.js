@@ -10,16 +10,26 @@ app.get("/", function(req, res) {
 const queryA = {
   name: "string",
   age: "number",
-  handler: query => "query"
+  handler: query => Date.now()
 };
 
 const mutatorA = {
   method: "POST",
-  handler: data => "mutator"
+  handler: data => "mutator [POST]"
+};
+const mutatorB = {
+  method: "PUT",
+  handler: data => "mutator [PUT]"
+};
+const mutatorC = {
+  method: "DELETE",
+  handler: data => "mutator [DELETE]"
 };
 
 const lib = new libsv(app, io);
 lib.append("/user", queryA, mutatorA);
+lib.append("/user", queryA, mutatorB);
+lib.append("/user", queryA, mutatorC);
 
 http.listen(3000, function() {
   console.log("listening on *:3000");
