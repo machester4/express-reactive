@@ -32,7 +32,13 @@
   <script>
     var socket = io();
     socket.on("connect", function() {
-      socket.emit("subscribe", { path: "/user", query: { name: "maicol" } });
+      socket.emit(
+        "subscribe",
+        { path: "/user", query: { name: "maicol" } },
+        err => {
+          console.log(err);
+        }
+      );
     });
     socket.on("/user", function(msg) {
       var node = document.createElement("LI");

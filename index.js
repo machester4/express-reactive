@@ -1,15 +1,20 @@
-const app = require("express")();
+const express = require("express");
+const app = express();
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
-const libsv = require("./lib");
+
+const subscriber = require("./lib")(app, io);
+const types = require("./lib/types");
+
+app.use(express.json());
 
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/index.html");
 });
 
 const queryA = {
-  name: "string",
-  age: "number",
+  name: types.required.string,
+  age: types.string,
   handler: query => Date.now()
 };
 
@@ -26,10 +31,9 @@ const mutatorC = {
   handler: data => "mutator [DELETE]"
 };
 
-const lib = new libsv(app, io);
-lib.append("/user", queryA, mutatorA);
-lib.append("/user", queryA, mutatorB);
-lib.append("/user", queryA, mutatorC);
+subscriber.append("/user", queryA, mutatorA);
+subscriber.append("/user", queryA, mutatorB);
+subscriber.append("/user", queryA, mutatorC);
 
 http.listen(3000, function() {
   console.log("listening on *:3000");
