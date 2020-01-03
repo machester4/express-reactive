@@ -1,13 +1,13 @@
 {
-  "name": "express-query-subscriber",
-  "version": "0.0.1",
+  "name": "express-reactive",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -17,5 +17,8 @@
     "express": "^4.17.1",
     "md5": "^2.2.1",
     "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }
